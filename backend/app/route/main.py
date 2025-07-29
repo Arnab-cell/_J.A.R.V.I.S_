@@ -45,29 +45,10 @@ async def check():
     """
     return {"status": "API is running"}
 
-# @app.get("/ask") # main api for the jarvis agent
-# async def ask(request: Request):
-#     """
-#     Endpoint to handle user queries and return responses from the J.A.R.V.I.S. agent.
-#     """
-#     try:
-#         # Extract query parameters
-#         query = request.query_params.get("query")
-#         if not query:
-#             raise HTTPException(status_code=400, detail="Query parameter 'query' is required")
-
-#         # Process the query (placeholder for actual processing logic)
-#         response = {"response": f"Processed query: {query}"}
-
-#         return JSONResponse(content=response)
-
-#     except Exception as e:
-#         logger.error(f"Error processing request: {e}")
-#         raise HTTPException(status_code=500, detail="Internal Server Error")
     
 @app.get("/ask")
 async def ask_from_agent(request: Request):
-    
+
     """
     Endpoint to handle user queries and return responses from the J.A.R.V.I.S. agent.
     """
