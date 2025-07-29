@@ -11,6 +11,9 @@ import os
 # imports for logging
 import logging
 
+# importing Chatbot
+from ..services.chatbot import ChatBot
+
 # ############################ ( Initialization Section ) #############################
 
 # Load environment variables from .env file
@@ -48,11 +51,9 @@ async def check():
     
 @app.get("/ask")
 async def ask_from_agent(request: Request):
-
     """
     Endpoint to handle user queries and return responses from the J.A.R.V.I.S. agent.
     """
-
     try:
         body = await request.json()
         # Extract query parameters
@@ -61,10 +62,8 @@ async def ask_from_agent(request: Request):
             raise HTTPException(status_code=400, detail="Query parameter 'query' is required")
 
         # #################### ( Main Function for answering questions ) ##############
-        print("answering")
 
-        # Process the query (placeholder for actual processing logic)
-        response = {"response": f"Processed query: {query}"} # Dummy response
+        response = ChatBot("Who are you?")["choices"][0]["message"]["content"]
 
         return JSONResponse(content=response) # Formating in JSON
 
