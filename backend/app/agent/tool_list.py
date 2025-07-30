@@ -15,7 +15,12 @@ TOOL_LIST = [
     # Tool(
     #     "chatbot",
     #     "Send a user query to the Jarvis AI and receive a conversational response.",
-    #     lambda query: ChatBot().get_response(query), # This lambda creates a ChatBot instance and calls its get_response method with the input query.
+    #     lambda query: ChatBot(query), # This lambda calls the ChatBot function directly with the input query.
     # )
+    Tool(
+        name="ChatBot",
+        func=lambda query: ChatBot(query),  # Directly call the ChatBot function with the input query
+        description="Send a user query to the Jarvis AI and receive a conversational response.",
+    )
     # add more tools
 ]

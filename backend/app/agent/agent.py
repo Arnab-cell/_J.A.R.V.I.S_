@@ -13,8 +13,10 @@ load_dotenv()
 from .tool_list import TOOL_LIST
 
 #  Creating Class for the Ultron Agent
-class UltronAgent:
+class JarvisAgent:
     def __init__(self):
+        print("Initializing Jarvis Agent...")
+
         self.api = os.getenv("DEEPSEEK_API_KEY") # Loading API key from .env
 
         if not self.api:
@@ -23,9 +25,9 @@ class UltronAgent:
         self.tools = TOOL_LIST  # Using the imported TOOL_LIST
 
         self.llm = ChatOpenAI(
-            model_name="deepseek-chat", # Use deepseek-coder for coding
-            api_key=self.api, # Use 'api_key' for DeepSeek authentication
-            openai_api_base="https://api.deepseek.com/v1",
+            model_name="deepseek/deepseek-r1:free",
+            api_key=self.api, # Using 'api_key' for DeepSeek authentication
+            openai_api_base="https://openrouter.ai/api/v1/",
             )
 
         self.prompt = PromptTemplate(
@@ -46,24 +48,24 @@ class UltronAgent:
             """
         )
 
+
         #  Initializing the agent with the LLM and tools
         self.agent = initialize_agent(
             tools=self.tools,
+            prompt=self.prompt,
             llm=self.llm,
             agent="zero-shot-react-description",
             verbose=True
         )
+
+        print("Agent initialized successfully.")
     
     def run_agent(self, query):
-        response = self.agent.invoke({"input": query})
-        # The output key is usually "output" for agents
-        return response.get("output", response)
+        print("Running agent with query:", query)
         
+        response = self.agent.invoke({"input": query}) # giving input to the agent
 
+        print("Agent response:", response)
 
-#  Example usage
-if __name__ == "__main__":
-    agent = UltronAgent()
-    query = "Hey Jarvis, how are you?"
-    response = agent.run_agent(query)
-    print("Jarvis:", response)
+        return response.get("output", response) # Sending response
+        
