@@ -5,8 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def get_joke():
+def get_joke(query=None):
     """Fetch a random joke from the JokeAPI."""
+    print(query)
+
     url = os.getenv("Joke_URI")  # Fetch the joke URL from environment variables
     if not url:
         return "Error: Joke_URI environment variable is not set."

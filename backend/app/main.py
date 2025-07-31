@@ -92,6 +92,7 @@ async def ask_from_agent_post(body: dict = Body(...)):
         # Now Using our LangChain agent to process the query
         response = jarvis_agent.run_agent(query)
 
+        print(response)
 
         if response is None:
             # logger.error(f"Unexpected ChatBot response: {bot_response}")
@@ -101,6 +102,7 @@ async def ask_from_agent_post(body: dict = Body(...)):
 
     except Exception as e:
         logger.error(f"Error processing request: {e}")
+        print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 

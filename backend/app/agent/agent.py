@@ -28,24 +28,25 @@ class JarvisAgent:
         Raises:
             ValueError: If the DEEPSEEK_API_KEY environment variable is not set.
         """
-        
-        print("Initializing Jarvis Agent...")
 
-        self.api = os.getenv("DEEPSEEK_API_KEY") # Loading API key from .env
+        # ########################### ( All Initialization Code ) ###########################
+
+        self.api = os.getenv("API_KEY") # Loading API key from .env
 
         #  Initializing SringOutputParser
         self.parser = StrOutputParser()
 
         if not self.api:
-            raise ValueError("DEEPSEEK_API_KEY environment variable is not set.")
+            raise ValueError("API_KEY environment variable is not set.")
 
         self.tools = TOOL_LIST  # Using the imported TOOL_LIST
 
         self.llm = ChatOpenAI(
-            model_name="deepseek/deepseek-r1:free",
+            model_name="deepseek/deepseek-r1-0528:free",
             api_key=self.api, # Using 'api_key' for DeepSeek authentication
-            openai_api_base="https://openrouter.ai/api/v1/",
-            )
+            openai_api_base="https://openrouter.ai/api/v1",
+        )
+
 
         self.prompt = PromptTemplate(
             input_variables=["input"],
@@ -77,7 +78,6 @@ class JarvisAgent:
             verbose=True
         )
 
-        print("Agent initialized successfully.")
     
     def run_agent(self, query):
         """
@@ -88,13 +88,8 @@ class JarvisAgent:
             str: The response from the agent.
         """
 
-        print("Running agent with query:", query)
         #  Invoking the agent with the query
         response = self.agent.invoke({"input": query}) # giving input to the agent
-        #  Parsing the response using StringOutputParser
-        # new_response = self.parser.parse(response)
-
-        # print("Agent response:", response)
 
         return response.get("output", response) # Sending response
         
