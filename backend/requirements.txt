@@ -1,0 +1,9 @@
+fastapi
+httpx
+langchain
+langchain-community
+langchain-openai
+openai
+python-doten
+requests
+uvicorn
