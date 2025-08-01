@@ -84,15 +84,12 @@ async def ask_from_agent_post(body: dict = Body(...)):
     try:
         query = body.get("query") # getting query from the request body
 
-        print("Received query:", query) # printing the query for debugging
 
         if not query:
             raise HTTPException(status_code=400, detail="Query parameter 'query' is required")
 
         # Now Using our LangChain agent to process the query
         response = jarvis_agent.run_agent(query)
-
-        print(response)
 
         if response is None:
             # logger.error(f"Unexpected ChatBot response: {bot_response}")

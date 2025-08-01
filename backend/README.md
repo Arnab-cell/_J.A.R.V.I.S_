@@ -56,11 +56,11 @@ backend/
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-org/jarvis-backend.git
+git clone https://github.com/Arnab-cell/_J.A.R.V.I.S_.git
 cd backend
 ```
 
-### 2. Switch to the new backend branch
+### 2. Switch to the new branch
 
 ```bash
 git switch feature/python-backend-for-AI
@@ -115,9 +115,9 @@ Don't forgot to change the model name and openai_api_base arguments here. If you
 
 ```
 self.llm = ChatOpenAI(
-                model_name="deepseek/deepseek-r1-0528:free",
+                model_name="deepseek/deepseek-r1-0528:free", # Change according to you
                 api_key=self.api, # Using 'api_key' for DeepSeek authentication
-                openai_api_base="https://openrouter.ai/api/v1",
+                openai_api_base="https://openrouter.ai/api/v1", # Change according to you
             )
 ```
 
