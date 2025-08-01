@@ -1,6 +1,9 @@
 fastapi
+httpx
 langchain
 langchain-community
-python-dotenv
+langchain-openai
+openai
+python-doten
 requests
 uvicorn

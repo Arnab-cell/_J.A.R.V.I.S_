@@ -40,7 +40,10 @@ This is the **backend engine for J.A.R.V.I.S AI**, built with:
 backend/
 ├── app/
 │   ├── main.py               # FastAPI app + LangChain logic
-├── .env                      # Your DeepSeek API key
+│   ├── agent                 # main folder that contains agent code and its tools
+│   ├── services              # folder that contains specefic services code like DeepSeek api services
+│   ├── tools                 # folder that contains functions that is used as tool for Jarvis agent
+├── .env                      # Your AI (OpenAI, DeepSeek etc.) API key
 ├── pyproject.toml            # uv project setup
 ├── app.py                    # Start server script
 └── README.md                 # You're reading this
